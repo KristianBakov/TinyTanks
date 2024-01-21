@@ -51,4 +51,5 @@ void ATank::Move(const FInputActionValue& Value)
 {
 	const FVector2D MoveVector = Value.Get<FVector2D>();
 	UE_LOG(LogTemp, Warning, TEXT("MoveVector: %s"), *MoveVector.ToString());
+	AddActorLocalOffset(MoveVector.X * FVector::RightVector + MoveVector.Y * FVector::ForwardVector);
 }
