@@ -6,7 +6,6 @@
 #include "Camera/CameraComponent.h"
 #include "InputMappingContext.h"
 #include "EnhancedInputComponent.h"
-#include "Kismet/GameplayStatics.h"
 #include <EnhancedInputSubsystems.h>
 
 ATank::ATank()
@@ -51,11 +50,6 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void ATank::Move(const FInputActionValue& Value)
 {
 	const FVector2D MoveVector = Value.Get<FVector2D>();
-
-	//moving forard/backward
-	float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
-	AddActorLocalOffset(MoveVector.Y * FVector::ForwardVector * DeltaTime * Speed, true);
-
-	//turning
-	AddActorLocalRotation(FRotator(0.0f, MoveVector.X * DeltaTime * 180.0f, 0.0f), true);
+	UE_LOG(LogTemp, Warning, TEXT("MoveVector: %s"), *MoveVector.ToString());
+	AddActorLocalOffset(MoveVector.X * FVector::RightVector + MoveVector.Y * FVector::ForwardVector);
 }
