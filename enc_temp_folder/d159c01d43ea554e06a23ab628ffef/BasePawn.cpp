@@ -4,7 +4,6 @@
 #include "BasePawn.h"
 #include "Components/CapsuleComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "Projectile.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -45,7 +44,6 @@ void ABasePawn::Fire()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Fire!"));
 	DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), 25.0f, 8, FColor::Red, false, 2.0f);
-	GetWorld()->SpawnActor<AProjectile>(ProjectileClass, ProjectileSpawnPoint->GetComponentLocation(), ProjectileSpawnPoint->GetComponentRotation());
 }
 
 // Called every frame

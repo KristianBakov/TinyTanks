@@ -24,8 +24,9 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 
+	PlayerController = Cast<APlayerController>(Controller);
 	//Setup input mapping context
-	if (auto PlayerController = Cast<APlayerController>(Controller))
+	if (PlayerController)
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
@@ -37,6 +38,13 @@ void ATank::BeginPlay()
 void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (PlayerController)
+	{
+		FHitResult HitResult;
+		PlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility,false, HitResult);
+		RotateTurret(HitResult.ImpactPoint);
+	}
 }
 
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -46,6 +54,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
 
 	EnhancedInputComponent->BindAction(InputMove, ETriggerEvent::Triggered, this, &ATank::Move);
+	EnhancedInputComponent->BindAction(InputFire, ETriggerEvent::Started, this, &ATank::Fire);
 }
 
 void ATank::Move(const FInputActionValue& Value)
@@ -57,5 +66,5 @@ void ATank::Move(const FInputActionValue& Value)
 	AddActorLocalOffset(MoveVector.Y * FVector::ForwardVector * DeltaTime * Speed, true);
 
 	//turning
-	AddActorLocalRotation(FRotator(0.0f, MoveVector.X * DeltaTime * 180.0f, 0.0f), true);
+	AddActorLocalRotation(FRotator(0.0f, MoveVector.X * DeltaTime * TurnRate, 0.0f), true);
 }

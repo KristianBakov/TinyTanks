@@ -38,6 +38,5 @@ private:
 	UStaticMeshComponent* TurretMesh = nullptr;
 	UPROPERTY(VisibleAnywhere, Category = "Components", BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	USceneComponent* ProjectileSpawnPoint = nullptr;
-	UPROPERTY(EditDefaultsOnly, Category = "Combat")
-	TSubclassOf<class AProjectile> ProjectileClass;
+
 };

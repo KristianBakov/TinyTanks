@@ -32,13 +32,19 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	class UCameraComponent* Camera;
 
+	APlayerController* PlayerController;
+
 	void Move(const FInputActionValue& Value);
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
 	class UInputMappingContext* InputMappingContext;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
 	UInputAction* InputMove;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+	UInputAction* InputFire;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
-	float Speed = 100.0f;
+	float Speed = 300.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	float TurnRate = 180.0f;
 };
