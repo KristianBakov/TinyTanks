@@ -27,6 +27,8 @@ public:
 	class UStaticMeshComponent* ProjectileStaticMeshComponent;
 	UPROPERTY(EditAnywhere, Category = "Projectile Movement")
 	class UProjectileMovementComponent* ProjectileMovementComponent;
+	UPROPERTY(EditAnywhere, Category = "Damage")
+	float Damage = 50.0f;
 
 private:
 	UFUNCTION()
