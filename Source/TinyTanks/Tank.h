@@ -49,4 +49,6 @@ public:
 	float Speed = 300.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	float TurnRate = 180.0f;
+
+	bool bIsAlive = true;
 };
