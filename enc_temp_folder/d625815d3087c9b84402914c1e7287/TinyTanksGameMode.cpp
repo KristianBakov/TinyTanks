@@ -35,8 +35,6 @@ void ATinyTanksGameMode::HandleGameStart()
 	Tank = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));
 	TankPlayerController = Cast<ATinyTanksPlayerController>(UGameplayStatics::GetPlayerController(this, 0));
 
-	StartGame();
-
 	if (TankPlayerController)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Disabling input"));

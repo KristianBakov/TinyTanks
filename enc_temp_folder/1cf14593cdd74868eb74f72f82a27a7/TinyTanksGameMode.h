@@ -14,4 +14,16 @@ class TINYTANKS_API ATinyTanksGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+	public:
+		void ActorDied(AActor* DeadActor);
+
+protected:
+	virtual void BeginPlay() override;
+
+private:
+	class ATank* Tank;
+	class ATinyTanksPlayerController* TankPlayerController;
+
+	float StartDelay = 3.f;
+	void HandleGameStart();
 };
