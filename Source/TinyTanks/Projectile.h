@@ -30,6 +30,11 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Damage")
 	float Damage = 50.0f;
 
+	UPROPERTY(EditAnywhere, Category = "Particles")
+	class UParticleSystem* HitParticles;
+	UPROPERTY(EditAnywhere, Category = "Particles")
+	class UParticleSystemComponent* TrailParticles;
+
 private:
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
