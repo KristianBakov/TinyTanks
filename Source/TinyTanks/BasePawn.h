@@ -34,6 +34,12 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	class UParticleSystem* DeathParticles;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	class USoundBase* DeathSound;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	TSubclassOf<class UCameraShakeBase> DeathShake;
+
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Components", BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UCapsuleComponent* CapsuleComponent = nullptr;
