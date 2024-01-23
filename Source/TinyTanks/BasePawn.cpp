@@ -25,6 +25,14 @@ ABasePawn::ABasePawn()
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 }
 
+void ABasePawn::HandleDestruction()
+{
+
+	//UGameplayStatics::SpawnEmitterAtLocation(this, DeathParticle, GetActorLocation());
+	//UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation());
+	//GetWorld()->GetFirstPlayerController()->ClientPlayCameraShake(DeathShake);
+}
+
 // Called when the game starts or when spawned
 void ABasePawn::BeginPlay()
 {

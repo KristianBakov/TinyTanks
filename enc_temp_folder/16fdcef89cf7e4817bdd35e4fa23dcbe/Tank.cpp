@@ -20,22 +20,15 @@ ATank::ATank()
 	Camera->SetupAttachment(SpringArm);
 }
 
-void ATank::HandleDestruction()
-{
-	Super::HandleDestruction();
-	SetActorHiddenInGame(true);
-	SetActorTickEnabled(false);
-}
-
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 
-	TankPlayerController = Cast<APlayerController>(Controller);
+	PlayerController = Cast<APlayerController>(Controller);
 	//Setup input mapping context
-	if (TankPlayerController)
+	if (PlayerController)
 	{
-		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(TankPlayerController->GetLocalPlayer()))
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
 			Subsystem->AddMappingContext(InputMappingContext, 0);
 		}
@@ -46,10 +39,10 @@ void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (TankPlayerController)
+	if (PlayerController)
 	{
 		FHitResult HitResult;
-		TankPlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility,false, HitResult);
+		PlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility,false, HitResult);
 		RotateTurret(HitResult.ImpactPoint);
 	}
 }

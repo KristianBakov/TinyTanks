@@ -20,8 +20,6 @@ protected:
 public:
 	virtual void Tick(float DeltaTime) override;
 
-	void HandleDestruction();
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	float FireRange = 500.0f;
 	

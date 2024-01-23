@@ -17,7 +17,6 @@ class TINYTANKS_API ATank : public ABasePawn
 	
 public:
 	ATank();
-	void HandleDestruction();
 
 protected:
 	virtual void BeginPlay() override;
@@ -26,7 +25,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	APlayerController* GetTankPlayerController() const { return TankPlayerController; }
 
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
@@ -34,7 +32,7 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	class UCameraComponent* Camera;
 
-	APlayerController* TankPlayerController;
+	APlayerController* PlayerController;
 
 	void Move(const FInputActionValue& Value);
 
